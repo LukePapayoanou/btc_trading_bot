@@ -6,7 +6,7 @@ library(TTR)
 library(purrr)
 library(zoo)
 
-conn <- dbConnect(SQLite(), "/Users/lukepapayoanou/Downloads/SummerResearch/btc_data.db")
+conn <- dbConnect(SQLite(), "btc_data.db")
 
 daily_table <-dbReadTable(conn, "btc_prices_daily")
 daily_updated <- daily_table |> tail(401)
