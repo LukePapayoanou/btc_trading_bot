@@ -207,7 +207,6 @@ marimo/_lsp/
 __marimo__/
 
 # Project-specific ignore rules
-*.db               # Ignore all SQLite DBs
 dailySentiment.R   # If it exists locally and contains secrets
 *.R                # Ignore all R scripts...
 !Signals.R         # ...except for the public one used in GitHub Actions
