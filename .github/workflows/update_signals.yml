@@ -18,8 +18,15 @@ jobs:
 
       - name: Install R dependencies
         run: |
-          Rscript -e 'install.packages(c("DBI", "RSQLite", "dplyr", "lubridate","TTR","purrr","zoo"))'
+          Rscript -e 'install.packages("DBI", repos = "https://cloud.r-project.org")'
+          Rscript -e 'install.packages("RSQLite", repos = "https://cloud.r-project.org")'
+          Rscript -e 'install.packages("dplyr", repos = "https://cloud.r-project.org")'
+          Rscript -e 'install.packages("lubridate", repos = "https://cloud.r-project.org")'
+          Rscript -e 'install.packages("TTR", repos = "https://cloud.r-project.org")'
+          Rscript -e 'install.packages("purrr", repos = "https://cloud.r-project.org")'
+          Rscript -e 'install.packages("zoo", repos = "https://cloud.r-project.org")'
 
       - name: Run Signals.R
         run: Rscript R/Signals.R
+
 
