@@ -1,0 +1,25 @@
+name: Update BTC Trading Signals
+
+on:
+  schedule:
+    - cron: '0 14 * * *'  # Runs every day at 2 PM UTC
+  workflow_dispatch:      # Allows manual trigger from GitHub UI
+
+jobs:
+  run-signals:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up R
+        uses: r-lib/actions/setup-r@v2
+
+      - name: Install R dependencies
+        run: |
+          Rscript -e 'install.packages(c("DBI", "RSQLite", "dplyr", "lubridate","TTR","purrr","zoo"))'
+
+      - name: Run Signals.R
+        run: Rscript R/Signals.R
+
