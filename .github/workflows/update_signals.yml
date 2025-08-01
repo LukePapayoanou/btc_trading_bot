@@ -40,13 +40,13 @@ jobs:
 
       - name: Commit and push updated README and chart
         run: |
-        git config --global user.name 'github-actions'
-        git config --global user.email 'github-actions@github.com'
+            git config --global user.name 'github-actions'
+            git config --global user.email 'github-actions@github.com'
                 
-        # Avoid error if file doesn't exist
-        [ -f plots/chart.png ] && git add plots/chart.png
-        git add README.md
+            # Avoid error if file doesn't exist
+            [ -f plots/chart.png ] && git add plots/chart.png
+            git add README.md
 
-        git commit -m "Auto-update README with latest chart and table" || echo "No changes to commit"
-        git push
+            git commit -m "Auto-update README with latest chart and table" || echo "No changes to commit"
+            git push
 
