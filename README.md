@@ -1,2 +1,7 @@
-# btc_trading_bot
-Daily BTC price &amp; sentiment strategy bot
+## Latest BTC Trading Signals
+
+![BTC Chart](plots/chart.png)
+
+<!-- START TABLE -->
+Table will be auto-generated here.
+<!-- END TABLE -->

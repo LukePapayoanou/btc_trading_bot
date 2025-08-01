@@ -28,7 +28,20 @@ jobs:
             any::zoo
             any::TTR
             any::ggplot2 
+            any::scales
+            any::knitr
 
       - name: Run Signals.R
         run: Rscript R/Signals.R
+        
+      - name: Run UpdateReadme.R
+        run: Rscript R/UpdateReadme.R
+
+      - name: Commit and push updated README and chart
+        run: |
+          git config --global user.name 'github-actions'
+          git config --global user.email 'github-actions@github.com'
+          git add README.md plots/chart.png
+          git commit -m "Auto-update README with latest chart and table" || echo "No changes to commit"
+          git push
 
