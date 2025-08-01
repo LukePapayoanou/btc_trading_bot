@@ -32,7 +32,8 @@ p <- ggplot(btc_data, aes(x = date, y = close, color = final_signal)) +
   theme_minimal()
 
 # Save plot
-ggsave("btc_chart.png", p, width = 8, height = 4)
+if (!dir.exists("plots")) dir.create("plots")
+ggsave("plots/chart.png", p, width = 8, height = 4)
 
 # Make summary table (latest 5 days)
 summary_table <- btc_data |> 
@@ -48,7 +49,7 @@ readme_text <- c(
   "# BTC Trading Bot Summary",
   "",
   "## 📈 Chart",
-  "![BTC Chart](btc_chart.png)",
+  "![BTC Chart](plots/chart.png)",  # Updated path here
   "",
   "## 📋 Latest Signals",
   table_md
