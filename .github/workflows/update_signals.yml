@@ -30,6 +30,7 @@ jobs:
             any::ggplot2 
             any::scales
             any::knitr
+            any::stringr
 
       - name: Run Signals.R
         run: Rscript R/Signals.R

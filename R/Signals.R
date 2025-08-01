@@ -5,14 +5,21 @@ library(dplyr)
 library(TTR)
 library(purrr)
 library(zoo)
+library(stringr)
 
 conn <- dbConnect(SQLite(), "database/btc_data.db")
 
 daily_table <-dbReadTable(conn, "btc_prices_daily")
 daily_updated <- daily_table |> tail(401)
+
+daily_updated$timestamp <- as.character(daily_updated$timestamp)
+valid_timestamps <- str_detect(daily_updated$timestamp, "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}")
+
+daily_updated <- daily_updated[valid_timestamps, ]
+
 daily_updated <- daily_updated %>%
-  mutate(timestamp = ymd_hms(timestamp)) %>%  
-  arrange(timestamp)  
+  mutate(timestamp = ymd_hms(timestamp)) %>%
+  arrange(timestamp)
 
 daily_btc <- daily_updated
 
@@ -231,6 +238,7 @@ combined_df <- combined_df |>
   mutate(date=as.character(date),
          timestamp = as.character(timestamp))
 
+dbExecute(conn, "DELETE FROM btc_outputs;")
 dbWriteTable(conn, "btc_outputs", combined_df, append = TRUE, row.names = FALSE)
 
 daily_sent |> tail(1)
