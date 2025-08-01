@@ -207,7 +207,6 @@ btc_signals$position_state |> tail(1)
 
 daily_sent <- dbReadTable(conn, "daily_sentiment_stats")
 
-dbRemoveTable(conn, "btc_outputs")
 
 dbExecute(conn, "CREATE TABLE IF NOT EXISTS btc_outputs (
   timestamp TEXT PRIMARY KEY,
